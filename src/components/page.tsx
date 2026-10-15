@@ -30,7 +30,7 @@ export function StatCard({ label, icon: Icon, value }: { label: string; icon: Lu
     <div className="rounded-xl border border-border bg-card p-5 shadow-card">
       <div className="flex items-center justify-between">
         <p className="text-sm text-muted-foreground">{label}</p>
-        <span className="rounded-lg bg-primary/10 p-2 text-primary"><Icon className="h-4 w-4" /></span>
+        <span className="rounded-lg bg-accent p-2 text-accent-foreground"><Icon className="h-4 w-4" /></span>
       </div>
       <p className="mt-3 text-2xl font-semibold tabular-nums">{value ?? "—"}</p>
       {value === undefined && <p className="mt-1 text-xs text-muted-foreground">No data yet</p>}
