@@ -1,24 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Users, UserCheck, Building2, CheckCircle2, Clock, AlertTriangle, HeartHandshake } from "lucide-react";
+import { EmptyState, PageHeader, Panel, StatCard, meta } from "@/components/page";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => meta("Dashboard", "Overview of SBS members, committees and evaluation progress."),
+  component: Dashboard,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const stats = [
+  { label: "Total members", icon: Users },
+  { label: "Active members", icon: UserCheck },
+  { label: "Total committees", icon: Building2, value: 8 },
+  { label: "Evaluations completed", icon: CheckCircle2 },
+  { label: "Evaluations pending", icon: Clock },
+  { label: "Overdue evaluations", icon: AlertTriangle },
+  { label: "Members needing follow-up", icon: HeartHandshake },
+];
+
+function Dashboard() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="mx-auto max-w-7xl">
+      <PageHeader title="Dashboard" description="A snapshot of members, evaluations and follow-ups across all committees." />
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {stats.map((s) => <StatCard key={s.label} {...s} />)}
+      </div>
+      <div className="mt-6 grid gap-6 lg:grid-cols-2">
+        <Panel title="Recent activity"><EmptyState title="No activity yet" hint="Evaluations, follow-ups and updates will appear here." /></Panel>
+        <Panel title="Upcoming deadlines"><EmptyState title="No deadlines" hint="Task and development deadlines will be listed here." /></Panel>
+        <Panel title="Pending evaluations"><EmptyState title="Nothing pending" hint="Evaluations awaiting review will show here." /></Panel>
+        <Panel title="Performance trends"><EmptyState title="Not enough data" hint="Trends appear after the first evaluation cycle." /></Panel>
+      </div>
     </div>
   );
 }
