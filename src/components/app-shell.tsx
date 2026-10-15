@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Bell, Menu, Search, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { PREVIEW_ROLE, visibleNav } from "@/lib/nav";
+import logo from "@/assets/sbs-logo.jpg.asset.json";
 import { cn } from "@/lib/utils";
 
 function NavList({ onNavigate }: { onNavigate?: () => void }) {
@@ -34,13 +35,10 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
 function Brand() {
   return (
     <div className="flex items-center gap-3 px-6 py-5">
-      {/* Placeholder until the official SBS logo is provided */}
-      <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-dashed border-sidebar-border text-[10px] font-semibold text-sidebar-foreground/60">
-        LOGO
-      </div>
+      <img src={logo.url} alt="SBS — شباب بتساعد شباب" className="h-11 w-11 rounded-lg object-contain" />
       <div>
         <p className="text-sm font-semibold text-sidebar-foreground">SBS HR</p>
-        <p className="text-xs text-sidebar-foreground/60">Members platform</p>
+        <p className="text-xs text-mint-foreground" lang="ar" dir="rtl">شباب بتساعد شباب</p>
       </div>
     </div>
   );
