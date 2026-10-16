@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { EmptyState, FilterBar, PageHeader, Panel, meta } from "@/components/page";
 
-export const Route = createFileRoute("/reports")({
+export const Route = createFileRoute("/_authenticated/reports")({
   head: () => meta("Reports & Analytics", "Committee comparisons, evaluation trends and engagement metrics."),
   component: () => (
     <div className="mx-auto max-w-7xl">

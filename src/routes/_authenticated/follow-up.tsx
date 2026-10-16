@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { EmptyState, PageHeader, Panel, meta } from "@/components/page";
 
-export const Route = createFileRoute("/follow-up")({
+export const Route = createFileRoute("/_authenticated/follow-up")({
   head: () => meta("HR Follow-up", "Track assigned members, follow-ups, issues and communication history."),
   component: () => (
     <div className="mx-auto max-w-7xl">

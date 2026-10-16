@@ -3,7 +3,7 @@ import { Building2 } from "lucide-react";
 import { Badge, PageHeader, meta } from "@/components/page";
 import { committees } from "@/lib/nav";
 
-export const Route = createFileRoute("/committees")({
+export const Route = createFileRoute("/_authenticated/committees")({
   head: () => meta("Committees", "The eight SBS committees with leaders, member counts and evaluation settings."),
   component: () => (
     <div className="mx-auto max-w-7xl">

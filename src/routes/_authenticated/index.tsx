@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Users, UserCheck, Building2, CheckCircle2, Clock, AlertTriangle, HeartHandshake } from "lucide-react";
 import { EmptyState, PageHeader, Panel, StatCard, meta } from "@/components/page";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/")({
   head: () => meta("Dashboard", "Overview of SBS members, committees and evaluation progress."),
   component: Dashboard,
 });
