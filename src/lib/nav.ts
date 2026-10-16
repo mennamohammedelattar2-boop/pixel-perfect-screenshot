@@ -2,22 +2,30 @@ import {
   LayoutDashboard, Users, Building2, ClipboardCheck, HeartHandshake,
   GraduationCap, MessageSquareText, BarChart3, Bell, Settings, type LucideIcon,
 } from "lucide-react";
-
-export type Role = "admin" | "hr" | "committee_leader" | "member";
+import type { AppRole } from "@/lib/auth";
 
 export type Permission =
   | "dashboard.view" | "members.view" | "committees.view" | "evaluations.view"
   | "followup.view" | "development.view" | "surveys.view" | "reports.view"
   | "notifications.view" | "settings.view";
 
-export const rolePermissions: Record<Role, Permission[]> = {
-  admin: [
+/**
+ * Controls which menu items are shown. This is a convenience only —
+ * actual data access is enforced by the database access rules.
+ */
+export const rolePermissions: Record<AppRole, Permission[]> = {
+  system_admin: ["dashboard.view", "committees.view", "notifications.view", "settings.view"],
+  head_hr: [
     "dashboard.view", "members.view", "committees.view", "evaluations.view", "followup.view",
     "development.view", "surveys.view", "reports.view", "notifications.view", "settings.view",
   ],
-  hr: [
+  vice_head_hr: [
     "dashboard.view", "members.view", "committees.view", "evaluations.view", "followup.view",
     "development.view", "surveys.view", "reports.view", "notifications.view",
+  ],
+  hr_member: [
+    "dashboard.view", "members.view", "committees.view", "followup.view",
+    "development.view", "surveys.view", "notifications.view",
   ],
   committee_leader: [
     "dashboard.view", "members.view", "committees.view", "evaluations.view",
@@ -41,20 +49,7 @@ export const navItems: NavItem[] = [
   { title: "Settings", to: "/settings", icon: Settings, permission: "settings.view" },
 ];
 
-/**
- * Until sign-in exists, the shell previews the admin view.
- * Replace with the signed-in user's role from the database later.
- */
-export const PREVIEW_ROLE: Role = "admin";
-
-export function visibleNav(role: Role) {
-  const allowed = new Set(rolePermissions[role]);
+export function visibleNav(roles: AppRole[]) {
+  const allowed = new Set(roles.flatMap((r) => rolePermissions[r]));
   return navItems.filter((i) => allowed.has(i.permission));
 }
-
-/** Eight SBS committees — official names to be supplied. */
-export const committees = Array.from({ length: 8 }, (_, i) => ({
-  id: i + 1,
-  name: `Committee ${i + 1}`,
-  pendingName: true,
-}));

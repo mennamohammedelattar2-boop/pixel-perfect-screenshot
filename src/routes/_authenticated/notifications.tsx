@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Bell } from "lucide-react";
 import { EmptyState, PageHeader, Panel, meta } from "@/components/page";
 
-export const Route = createFileRoute("/notifications")({
+export const Route = createFileRoute("/_authenticated/notifications")({
   head: () => meta("Notifications", "Deadlines, evaluation updates and follow-up reminders."),
   component: () => (
     <div className="mx-auto max-w-3xl">

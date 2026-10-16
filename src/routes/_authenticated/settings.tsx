@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Badge, PageHeader, meta } from "@/components/page";
 
-export const Route = createFileRoute("/settings")({
+export const Route = createFileRoute("/_authenticated/settings")({
   head: () => meta("Settings", "User roles, permissions, committees, evaluation criteria and notifications."),
   component: Settings,
 });

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataTable, FilterBar, PageHeader, meta } from "@/components/page";
 
-export const Route = createFileRoute("/members")({
+export const Route = createFileRoute("/_authenticated/members")({
   head: () => meta("Members", "Searchable directory of SBS members with committee and HR assignments."),
   component: () => (
     <div className="mx-auto max-w-7xl">

@@ -9,109 +9,138 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as CommitteesRouteImport } from './routes/committees'
-import { Route as DevelopmentRouteImport } from './routes/development'
-import { Route as EvaluationsRouteImport } from './routes/evaluations'
-import { Route as FollowUpRouteImport } from './routes/follow-up'
-import { Route as MembersRouteImport } from './routes/members'
-import { Route as NotificationsRouteImport } from './routes/notifications'
-import { Route as ReportsRouteImport } from './routes/reports'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as SurveysRouteImport } from './routes/surveys'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedCommitteesRouteImport } from './routes/_authenticated/committees'
+import { Route as AuthenticatedDevelopmentRouteImport } from './routes/_authenticated/development'
+import { Route as AuthenticatedEvaluationsRouteImport } from './routes/_authenticated/evaluations'
+import { Route as AuthenticatedFollowUpRouteImport } from './routes/_authenticated/follow-up'
+import { Route as AuthenticatedMembersRouteImport } from './routes/_authenticated/members'
+import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
+import { Route as AuthenticatedReportsRouteImport } from './routes/_authenticated/reports'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedSurveysRouteImport } from './routes/_authenticated/surveys'
 
-const IndexRoute = IndexRouteImport.update({
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const CommitteesRoute = CommitteesRouteImport.update({
+const AuthenticatedCommitteesRoute = AuthenticatedCommitteesRouteImport.update({
   id: '/committees',
   path: '/committees',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const DevelopmentRoute = DevelopmentRouteImport.update({
-  id: '/development',
-  path: '/development',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EvaluationsRoute = EvaluationsRouteImport.update({
-  id: '/evaluations',
-  path: '/evaluations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FollowUpRoute = FollowUpRouteImport.update({
+const AuthenticatedDevelopmentRoute =
+  AuthenticatedDevelopmentRouteImport.update({
+    id: '/development',
+    path: '/development',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedEvaluationsRoute =
+  AuthenticatedEvaluationsRouteImport.update({
+    id: '/evaluations',
+    path: '/evaluations',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFollowUpRoute = AuthenticatedFollowUpRouteImport.update({
   id: '/follow-up',
   path: '/follow-up',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const MembersRoute = MembersRouteImport.update({
+const AuthenticatedMembersRoute = AuthenticatedMembersRouteImport.update({
   id: '/members',
   path: '/members',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const NotificationsRoute = NotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ReportsRoute = ReportsRouteImport.update({
+const AuthenticatedNotificationsRoute =
+  AuthenticatedNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsRoute = AuthenticatedReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const SettingsRoute = SettingsRouteImport.update({
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const SurveysRoute = SurveysRouteImport.update({
+const AuthenticatedSurveysRoute = AuthenticatedSurveysRouteImport.update({
   id: '/surveys',
   path: '/surveys',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/committees': typeof CommitteesRoute
-  '/development': typeof DevelopmentRoute
-  '/evaluations': typeof EvaluationsRoute
-  '/follow-up': typeof FollowUpRoute
-  '/members': typeof MembersRoute
-  '/notifications': typeof NotificationsRoute
-  '/reports': typeof ReportsRoute
-  '/settings': typeof SettingsRoute
-  '/surveys': typeof SurveysRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/committees': typeof AuthenticatedCommitteesRoute
+  '/development': typeof AuthenticatedDevelopmentRoute
+  '/evaluations': typeof AuthenticatedEvaluationsRoute
+  '/follow-up': typeof AuthenticatedFollowUpRoute
+  '/members': typeof AuthenticatedMembersRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/surveys': typeof AuthenticatedSurveysRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/committees': typeof CommitteesRoute
-  '/development': typeof DevelopmentRoute
-  '/evaluations': typeof EvaluationsRoute
-  '/follow-up': typeof FollowUpRoute
-  '/members': typeof MembersRoute
-  '/notifications': typeof NotificationsRoute
-  '/reports': typeof ReportsRoute
-  '/settings': typeof SettingsRoute
-  '/surveys': typeof SurveysRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/committees': typeof AuthenticatedCommitteesRoute
+  '/development': typeof AuthenticatedDevelopmentRoute
+  '/evaluations': typeof AuthenticatedEvaluationsRoute
+  '/follow-up': typeof AuthenticatedFollowUpRoute
+  '/members': typeof AuthenticatedMembersRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/surveys': typeof AuthenticatedSurveysRoute
+  '/': typeof AuthenticatedIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/committees': typeof CommitteesRoute
-  '/development': typeof DevelopmentRoute
-  '/evaluations': typeof EvaluationsRoute
-  '/follow-up': typeof FollowUpRoute
-  '/members': typeof MembersRoute
-  '/notifications': typeof NotificationsRoute
-  '/reports': typeof ReportsRoute
-  '/settings': typeof SettingsRoute
-  '/surveys': typeof SurveysRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/committees': typeof AuthenticatedCommitteesRoute
+  '/_authenticated/development': typeof AuthenticatedDevelopmentRoute
+  '/_authenticated/evaluations': typeof AuthenticatedEvaluationsRoute
+  '/_authenticated/follow-up': typeof AuthenticatedFollowUpRoute
+  '/_authenticated/members': typeof AuthenticatedMembersRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/reports': typeof AuthenticatedReportsRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/surveys': typeof AuthenticatedSurveysRoute
+  '/_authenticated/': typeof AuthenticatedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
+    | '/reset-password'
     | '/committees'
     | '/development'
     | '/evaluations'
@@ -123,7 +152,8 @@ export interface FileRouteTypes {
     | '/surveys'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
+    | '/auth'
+    | '/reset-password'
     | '/committees'
     | '/development'
     | '/evaluations'
@@ -133,119 +163,159 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/surveys'
+    | '/'
   id:
     | '__root__'
-    | '/'
-    | '/committees'
-    | '/development'
-    | '/evaluations'
-    | '/follow-up'
-    | '/members'
-    | '/notifications'
-    | '/reports'
-    | '/settings'
-    | '/surveys'
+    | '/_authenticated'
+    | '/auth'
+    | '/reset-password'
+    | '/_authenticated/committees'
+    | '/_authenticated/development'
+    | '/_authenticated/evaluations'
+    | '/_authenticated/follow-up'
+    | '/_authenticated/members'
+    | '/_authenticated/notifications'
+    | '/_authenticated/reports'
+    | '/_authenticated/settings'
+    | '/_authenticated/surveys'
+    | '/_authenticated/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  CommitteesRoute: typeof CommitteesRoute
-  DevelopmentRoute: typeof DevelopmentRoute
-  EvaluationsRoute: typeof EvaluationsRoute
-  FollowUpRoute: typeof FollowUpRoute
-  MembersRoute: typeof MembersRoute
-  NotificationsRoute: typeof NotificationsRoute
-  ReportsRoute: typeof ReportsRoute
-  SettingsRoute: typeof SettingsRoute
-  SurveysRoute: typeof SurveysRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/': {
+      id: '/_authenticated/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/committees': {
-      id: '/committees'
+    '/_authenticated/committees': {
+      id: '/_authenticated/committees'
       path: '/committees'
       fullPath: '/committees'
-      preLoaderRoute: typeof CommitteesRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedCommitteesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/development': {
-      id: '/development'
+    '/_authenticated/development': {
+      id: '/_authenticated/development'
       path: '/development'
       fullPath: '/development'
-      preLoaderRoute: typeof DevelopmentRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedDevelopmentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/evaluations': {
-      id: '/evaluations'
+    '/_authenticated/evaluations': {
+      id: '/_authenticated/evaluations'
       path: '/evaluations'
       fullPath: '/evaluations'
-      preLoaderRoute: typeof EvaluationsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedEvaluationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/follow-up': {
-      id: '/follow-up'
+    '/_authenticated/follow-up': {
+      id: '/_authenticated/follow-up'
       path: '/follow-up'
       fullPath: '/follow-up'
-      preLoaderRoute: typeof FollowUpRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedFollowUpRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/members': {
-      id: '/members'
+    '/_authenticated/members': {
+      id: '/_authenticated/members'
       path: '/members'
       fullPath: '/members'
-      preLoaderRoute: typeof MembersRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedMembersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/notifications': {
-      id: '/notifications'
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
       path: '/notifications'
       fullPath: '/notifications'
-      preLoaderRoute: typeof NotificationsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/reports': {
-      id: '/reports'
+    '/_authenticated/reports': {
+      id: '/_authenticated/reports'
       path: '/reports'
       fullPath: '/reports'
-      preLoaderRoute: typeof ReportsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedReportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/settings': {
-      id: '/settings'
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
       path: '/settings'
       fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/surveys': {
-      id: '/surveys'
+    '/_authenticated/surveys': {
+      id: '/_authenticated/surveys'
       path: '/surveys'
       fullPath: '/surveys'
-      preLoaderRoute: typeof SurveysRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedSurveysRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCommitteesRoute: typeof AuthenticatedCommitteesRoute
+  AuthenticatedDevelopmentRoute: typeof AuthenticatedDevelopmentRoute
+  AuthenticatedEvaluationsRoute: typeof AuthenticatedEvaluationsRoute
+  AuthenticatedFollowUpRoute: typeof AuthenticatedFollowUpRoute
+  AuthenticatedMembersRoute: typeof AuthenticatedMembersRoute
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedReportsRoute: typeof AuthenticatedReportsRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedSurveysRoute: typeof AuthenticatedSurveysRoute
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCommitteesRoute: AuthenticatedCommitteesRoute,
+  AuthenticatedDevelopmentRoute: AuthenticatedDevelopmentRoute,
+  AuthenticatedEvaluationsRoute: AuthenticatedEvaluationsRoute,
+  AuthenticatedFollowUpRoute: AuthenticatedFollowUpRoute,
+  AuthenticatedMembersRoute: AuthenticatedMembersRoute,
+  AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedReportsRoute: AuthenticatedReportsRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedSurveysRoute: AuthenticatedSurveysRoute,
+  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  CommitteesRoute: CommitteesRoute,
-  DevelopmentRoute: DevelopmentRoute,
-  EvaluationsRoute: EvaluationsRoute,
-  FollowUpRoute: FollowUpRoute,
-  MembersRoute: MembersRoute,
-  NotificationsRoute: NotificationsRoute,
-  ReportsRoute: ReportsRoute,
-  SettingsRoute: SettingsRoute,
-  SurveysRoute: SurveysRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

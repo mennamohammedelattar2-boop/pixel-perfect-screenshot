@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataTable, FilterBar, PageHeader, meta } from "@/components/page";
 
-export const Route = createFileRoute("/evaluations")({
+export const Route = createFileRoute("/_authenticated/evaluations")({
   head: () => meta("Task Evaluations", "Workspace for task-based member evaluations and feedback."),
   component: () => (
     <div className="mx-auto max-w-7xl">
